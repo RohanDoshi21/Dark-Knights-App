@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "737324714295",
+    "project_id": "dark-knights-pict",
+    "storage_bucket": "dark-knights-pict.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737324714295:android:0cc329035728f4c20ff2b2",
+        "android_client_info": {
+          "package_name": "com.darkkinghts.app.darkknightspict"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737324714295-7m6negd95p1ig7ooqbq003nmuff98t1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darkkinghts.app.darkknightspict",
+            "certificate_hash": "1b9f7646632fe60fce0b2c61db0ee3eee873393f"
+          }
+        },
+        {
+          "client_id": "737324714295-7en8imnna0fdulosnv671cvijsa5cfbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASw4f4GHDehxznwesmumhnv93BIWL7M_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737324714295-7en8imnna0fdulosnv671cvijsa5cfbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

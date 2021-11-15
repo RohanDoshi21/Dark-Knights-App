@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:darkknightspict/Admin/Chat/chat_screen.dart';
+import 'package:darkknightspict/Admin/Chat/clientuid.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -37,47 +39,60 @@ class _ChatHomeState extends State<ChatHome> {
                   const Divider(
                     height: 10.0,
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      foregroundColor: Theme.of(context).primaryColor,
-                      backgroundColor: Colors.grey,
-                      backgroundImage: NetworkImage(_chatTile['photoURL']),
-                    ),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          _chatTile['displayName'],
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        chatwithUID = _chatTile['uid'];
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChatScreenAdmin(),
                         ),
-                        Text(
-                          DateFormat.jm()
-                              .format(_chatTile['lastMessageTime'].toDate())
-                              .toString(),
-                          style: const TextStyle(
-                              color: Colors.grey, fontSize: 14.0),
-                        ),
-                      ],
-                    ),
-                    subtitle: _chatTile['phoneNumber'] != null
-                        ? Container(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              _chatTile['email'] +
-                                  " " +
-                                  _chatTile['phoneNumber'],
-                              style: const TextStyle(
-                                  color: Colors.grey, fontSize: 15.0),
-                            ),
-                          )
-                        : Container(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              _chatTile['email'],
-                              style: const TextStyle(
-                                  color: Colors.grey, fontSize: 15.0),
-                            ),
+                      );
+                    },
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        foregroundColor: Theme.of(context).primaryColor,
+                        backgroundColor: Colors.grey,
+                        backgroundImage: NetworkImage(_chatTile['photoURL']),
+                      ),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            _chatTile['displayName'],
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
+                          Text(
+                            DateFormat.jm()
+                                .format(_chatTile['lastMessageTime'].toDate())
+                                .toString(),
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 14.0),
+                          ),
+                        ],
+                      ),
+                      subtitle: _chatTile['phoneNumber'] != null
+                          ? Container(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                _chatTile['email'] +
+                                    " " +
+                                    _chatTile['phoneNumber'],
+                                style: const TextStyle(
+                                    color: Colors.grey, fontSize: 15.0),
+                              ),
+                            )
+                          : Container(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                _chatTile['email'],
+                                style: const TextStyle(
+                                    color: Colors.grey, fontSize: 15.0),
+                              ),
+                            ),
+                    ),
                   ),
                 ],
               );

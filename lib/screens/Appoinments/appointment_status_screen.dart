@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 class AppointmentStatus extends StatefulWidget {
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   AppointmentStatus({required this.date, required this.time});
   late final String date;
   late final String time;
 
   @override
+  // ignore: no_logic_in_create_state
   _AppointmentStatusState createState() => _AppointmentStatusState(date,time);
 }
 
@@ -39,8 +41,8 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding:EdgeInsets.all(13.0),
-              margin: EdgeInsets.all(37.0),
+              padding:const EdgeInsets.all(13.0),
+              margin: const EdgeInsets.all(37.0),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.rectangle,
@@ -53,7 +55,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   const SizedBox(
                     height: 40.0,
                   ),
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 50.0,
                     backgroundColor: Colors.grey,
                     //TODO: Attach background image as their profile picture from their google account
@@ -61,7 +63,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   const SizedBox(
                     height: 50.0,
                   ),
-                  Text(
+                  const Text(
                     'NAME OF THE CLIENT',
                     //TODO: Update the name of the client
                     style: TextStyle(
@@ -73,7 +75,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   const SizedBox(
                     height: 30.0,
                   ),
-                  Text(
+                  const Text(
                     'Date of Appointment:',
                     style: TextStyle(
                       fontSize: 20.0,
@@ -85,7 +87,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   ),
                   Text(
                    date,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20.0,
                     ),
@@ -93,7 +95,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   const SizedBox(
                     height: 40.0,
                   ),
-                  Text(
+                  const Text(
                     'Time of Appointment:',
                     style: TextStyle(
                       fontSize: 20.0,
@@ -105,7 +107,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   ),
                   Text(
                     time,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20.0,
                     ),
@@ -113,7 +115,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                   const SizedBox(
                     height: 30.0,
                   ),
-                  Text(
+                  const Text(
                     'Appointment Status:',
                     style: TextStyle(
                       fontSize: 20.0,

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 import 'appointment_status_screen.dart';
 
+// ignore: use_key_in_widget_constructors
 class AppointmentsHome extends StatefulWidget {
 
   @override
@@ -18,6 +19,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
      TimeOfDay time=TimeOfDay.now();
 
     String getTiming(){//will return the timing in a string format
+     // ignore: unnecessary_null_comparison
      if(time==null){
        return '___';
      }
@@ -57,19 +59,20 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
               height: 30.0,
             ),
             Container(
-              padding:EdgeInsets.all(15.0),
-              margin: EdgeInsets.all(37.0),
+              padding:const EdgeInsets.all(15.0),
+              // margin: const EdgeInsets.(37.0),
+              margin: const EdgeInsets.symmetric(horizontal: 37),
               decoration: BoxDecoration(
                 color: Colors.cyan.shade800.withOpacity(0.4),
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.all(Radius.circular(25)),
+                borderRadius: const BorderRadius.all(Radius.circular(25)),
               ),
               width: MediaQuery.of(context).size.width * 0.82,
-              height: MediaQuery.of(context).size.height * 0.68,
+              height: MediaQuery.of(context).size.height * 0.55,
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 30.0,
+                    height: 10.0,
                   ),
                  Text(
                    'Choose a suitable date',
@@ -80,7 +83,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                    ),
                  ),
                   const SizedBox(
-                    height: 30.0,
+                    height: 10.0,
                   ),
                   Text(
                     date,
@@ -91,7 +94,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30.0,
+                    height: 10.0,
                   ),
                   ElevatedButton(
                       onPressed: () async{
@@ -114,7 +117,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     color: Colors.white,
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
                   Text(
                     'Choose a time slot',
@@ -125,7 +128,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
                   Text(
                   getTiming(),
@@ -136,7 +139,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
                   ElevatedButton(
                       onPressed: () async{
@@ -153,7 +156,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                       ),
                   ),
                   const SizedBox(
-                    height: 30.0,
+                    height: 10.0,
                   ),
                   const Text(
                     'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
@@ -164,6 +167,9 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   ),
                 ],
               ),
+            ),
+            const SizedBox(
+              height : 30,
             ),
             ElevatedButton(
               onPressed:(){
@@ -193,7 +199,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)
                   ),
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
               ),
             ),
           ],

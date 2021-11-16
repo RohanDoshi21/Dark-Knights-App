@@ -29,6 +29,9 @@ class _NewMessageState extends State<NewMessage> {
       "createdAt": Timestamp.now(),
       "Message": _enteredMesaage,
     });
+    FirebaseFirestore.instance.collection('Users').doc(user.uid).update({
+      "lastMessageTime": Timestamp.now(),
+    });
     _controller.clear();
   }
 

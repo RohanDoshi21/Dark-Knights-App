@@ -14,11 +14,8 @@ class ChatHome extends StatefulWidget {
 class _ChatHomeState extends State<ChatHome> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Clients Messages!"),
-      ),
-      body: StreamBuilder(
+    return Center(
+      child: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('Users')
             .orderBy('lastMessageTime', descending: true)

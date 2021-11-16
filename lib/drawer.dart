@@ -1,7 +1,7 @@
 import 'package:darkknightspict/bottombar.dart';
 import 'package:darkknightspict/developers.dart';
 // import 'package:darkknightspict/initial_page.dart';
-import 'package:darkknightspict/screens/Appoinments/appointments.dart';
+// import 'package:darkknightspict/screens/Appoinments/appointments.dart';
 import 'package:elastic_drawer/elastic_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class _AppDrawerState extends State<AppDrawer> {
     return ElasticDrawer(
       mainColor: Colors.white,
       drawerColor: const Color(0xff0A043C),
-      mainChild: BottomBar(),
+      mainChild: const BottomBar(),
       drawerChild: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +87,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 height: 50,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: Color(0xffFEF9EF),
+                    color: const Color(0xffFEF9EF),
                     borderRadius: BorderRadius.circular(10)),
                 child: const Text(
                   'Logout',

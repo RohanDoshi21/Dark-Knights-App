@@ -2,10 +2,6 @@ import 'package:darkknightspict/screens/Appoinments/appointments.dart';
 import 'package:darkknightspict/screens/Chat/chat_screen.dart';
 import 'package:darkknightspict/screens/Files/file_home.dart';
 import 'package:flutter/material.dart';
-// import 'package:hackdrawer/appointments.dart';
-// import 'package:hackdrawer/chat.dart';
-// import 'package:hackdrawer/drawer.dart';
-// import 'package:hackdrawer/home.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -19,7 +15,11 @@ class _BottomBarState extends State<BottomBar> {
   int _pageIndex = 0;
 
   PageController _pageController = PageController();
-  List<Widget> pages = [AppointmentsHome(), ChatScreen(), FileHome()];
+  List<Widget> pages = [
+    const AppointmentsHome(),
+    const ChatScreen(),
+    const FileHome()
+  ];
   @override
   void initState() {
     super.initState();
@@ -57,8 +57,8 @@ class _BottomBarState extends State<BottomBar> {
 
   void onPageChanged(int page) {
     setState(() {
-      this._pageIndex = page;
-      print(page);
+      _pageIndex = page;
+      // print(page);
     });
   }
 

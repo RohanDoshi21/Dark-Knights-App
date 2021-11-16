@@ -7,7 +7,10 @@ class ChatScreenAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white.withOpacity(0.9),
+        elevation: 0,
+      ),
       body: Column(
         children: const [
           Expanded(

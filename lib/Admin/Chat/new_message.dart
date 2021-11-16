@@ -29,6 +29,9 @@ class _NewMessageAdminState extends State<NewMessageAdmin> {
       "createdAt": Timestamp.now(),
       "Message": _enteredMesaage,
     });
+    FirebaseFirestore.instance.collection('Users').doc(chatwithUID).update({
+      "lastMessageTime": Timestamp.now(),
+    });
     _controller.clear();
   }
 

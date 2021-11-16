@@ -1,6 +1,7 @@
-import 'package:darkknightspict/Admin/chat_home.dart';
+// import 'package:darkknightspict/Admin/chat_home.dart';
 import 'package:darkknightspict/Admin/initial_admin.dart';
-import 'package:darkknightspict/initial_page.dart';
+import 'package:darkknightspict/drawer.dart';
+// import 'package:darkknightspict/initial_page.dart';
 // import 'package:darkknightspict/screens/Chat/chat_screen.dart';
 import 'package:darkknightspict/services/google_signin.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class LoginScreen extends StatelessWidget {
                         (_) => Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const InitialPage(),
+                            builder: (context) => const AppDrawer(),
                           ),
                         ),
                       );

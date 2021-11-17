@@ -25,32 +25,6 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
   bool? isBooked;
   final user = FirebaseAuth.instance.currentUser;
 
-  // Future<bool> checkIfDocExists() async {
-  //   var doc = await FirebaseFirestore.instance
-  //       .collection('Appointments')
-  //       .doc(user!.uid)
-  //       .get()
-  //       .then((value) {
-  //     setState(() {
-  //       date = DateFormat.yMMMMd()
-  //           .format(value.data()!['dateTime'].toDate())
-  //           .toString();
-  //       time = DateFormat.jm()
-  //           .format(value.data()!['dateTime'].toDate())
-  //           .toString();
-  //       photoURL = value.data()!['photoURL'];
-  //       displayName = value.data()!['displayName'];
-  //       status = value.data()!['status'];
-  //     });
-  //   });
-  //   setState(() async {
-  //     isBooked = await doc.exists;
-  //   });
-  //   print("Inside CheckDocFunction");
-  //   print("Returning a non null value");
-  //   return isBooked;
-  // }
-
   Future checkIfDocExists() async {
     var doc = await FirebaseFirestore.instance
         .collection('Appointments')
@@ -70,28 +44,18 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
     setState(() {
       isBooked = doc.exists;
     });
-    return isBooked;
-    // return doc.exists;
-  }
 
-  @override
-  void initState() {
-    super.initState();
-    // isBooked = checkIfDocExists();
-    // _isBooked = checkIfDocExists() as bool?;
+    return isBooked;
   }
 
   @override
   Widget build(BuildContext context) {
+    // final _width = MediaQuery.of(context).size.width;
+    final _height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: FutureBuilder(
           future: checkIfDocExists(),
           builder: (context, snapshot) {
-            // if (snapshot.connectionState == ConnectionState.waiting) {
-            //   return const Center(
-            //     child: CircularProgressIndicator(),
-            //   );
-            // } else
             if (isBooked == true) {
               return Scaffold(
                 backgroundColor: Colors.cyan.withOpacity(0.8),
@@ -116,99 +80,98 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.all(Radius.circular(25)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       width: MediaQuery.of(context).size.width * 0.82,
-                      height: MediaQuery.of(context).size.height * 0.65,
+                      height: MediaQuery.of(context).size.height * 0.62,
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 40.0,
+                          SizedBox(
+                            height: _height * 0.0178,
                           ),
                           CircleAvatar(
-                            radius: 50.0,
+                            radius: _height * 0.064,
                             backgroundColor: Colors.grey,
+                            //Profile Photo of Client
                             backgroundImage:
                                 NetworkImage(user!.photoURL as String),
-                            //TODO: Attach background image as their profile picture from their google account
                           ),
-                          const SizedBox(
-                            height: 20.0,
+                          SizedBox(
+                            height: _height * 0.0256,
                           ),
                           Text(
                             // 'NAME OF THE CLIENT',
                             displayName,
-                            //TODO: Update the name of the client
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                              fontSize: 25.0,
+                              fontSize: _height * 0.032,
                             ),
                           ),
-                          const SizedBox(
-                            height: 30.0,
+                          SizedBox(
+                            height: _height * 0.0384,
                           ),
-                          const Text(
+                          Text(
                             'Date of Appointment:',
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: _height * 0.0256,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const SizedBox(
-                            height: 10.0,
+                          SizedBox(
+                            height: _height * 0.0128,
                           ),
                           Text(
                             date,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20.0,
+                              fontSize: _height * 0.0256,
                             ),
                           ),
-                          const SizedBox(
-                            height: 40.0,
+                          SizedBox(
+                            height: _height * 0.0512,
                           ),
-                          const Text(
+                          Text(
                             'Time of Appointment:',
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: _height * 0.0256,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const SizedBox(
-                            height: 10.0,
+                          SizedBox(
+                            height: _height * 0.0128,
                           ),
                           Text(
                             time,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20.0,
+                              fontSize: _height * 0.0256,
                             ),
                           ),
-                          const SizedBox(
-                            height: 30.0,
+                          SizedBox(
+                            height: _height * 0.0384,
                           ),
-                          const Text(
+                          Text(
                             'Appointment Status:',
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: _height * 0.0256,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const SizedBox(
-                            height: 10.0,
+                          SizedBox(
+                            height: _height * 0.0128,
                           ),
                           Text(
                               // ' Pending',
                               status,
                               style: status == 'Pending'
                                   ? TextStyle(
-                                      fontSize: 20.0,
+                                      fontSize: _height * 0.0256,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.yellow.shade800,
                                     )
                                   : TextStyle(
-                                      fontSize: 20.0,
+                                      fontSize: _height * 0.0256,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.green.shade800,
                                     )),
@@ -221,16 +184,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
             } else {
               return AppointmentsHome();
             }
-          }
-          // else {
-          //   print("snapshot data" + snapshot.hasData.toString());
-          //   return const Center(
-          //     child: CircularProgressIndicator(),
-          //   );
-          // }
-
-          // }
-          ),
+          }),
     );
   }
 }

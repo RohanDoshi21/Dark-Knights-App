@@ -13,9 +13,9 @@ class BottomBar extends StatefulWidget {
   State<BottomBar> createState() => _BottomBarState();
 }
 
-class _BottomBarState extends State<BottomBar> {
-  int _pageIndex = 0;
+int pageIndex = 0;
 
+class _BottomBarState extends State<BottomBar> {
   PageController _pageController = PageController();
   List<Widget> pages = [
     // AppointmentsHome(),
@@ -26,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _pageIndex);
+    _pageController = PageController(initialPage: pageIndex);
   }
 
   @override
@@ -39,7 +39,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageIndex,
+        currentIndex: pageIndex,
         onTap: gotoPage,
         backgroundColor: Colors.white,
         items: const [
@@ -60,7 +60,7 @@ class _BottomBarState extends State<BottomBar> {
 
   void onPageChanged(int page) {
     setState(() {
-      _pageIndex = page;
+      pageIndex = page;
       // print(page);
     });
   }

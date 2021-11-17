@@ -1,6 +1,5 @@
-//import 'package:appointment_status/screens/appointment_status_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:darkknightspict/drawer.dart';
+import 'package:darkknightspict/bottombar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +37,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
 
   @override
   Widget build(BuildContext context) {
+    final _height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.cyan.shade200.withOpacity(0.9), //temporary color
@@ -78,30 +78,30 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
               height: MediaQuery.of(context).size.height * 0.55,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   Text(
                     'Choose a suitable date',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.7),
-                      fontSize: 25.0,
+                      fontSize: _height * 0.032,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   Text(
                     date,
-                    style: const TextStyle(
-                      fontSize: 30.0,
+                    style: TextStyle(
+                      fontSize: _height * 0.0384,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   ElevatedButton(
                     onPressed: () async {
@@ -118,35 +118,35 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     },
                     child: const Text('Choose date'),
                   ),
-                  const Divider(
-                    height: 30.0,
+                  Divider(
+                    height: _height * 0.0384,
                     thickness: 1.0,
                     color: Colors.white,
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   Text(
                     'Choose a time slot',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.7),
-                      fontSize: 25.0,
+                      fontSize: _height * 0.032,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   Text(
                     getTiming(),
-                    style: const TextStyle(
-                      fontSize: 30.0,
+                    style: TextStyle(
+                      fontSize: _height * 0.0384,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   ElevatedButton(
                     onPressed: () async {
@@ -156,16 +156,14 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                       );
                       setState(() {
                         time = newTime!;
-                        appointmentDateTime =
-                            combine(appointmentDateTime, time);
                       });
                     },
                     child: const Text(
                       'Choose timing',
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: _height * 0.0128,
                   ),
                   const Text(
                     'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
@@ -177,11 +175,12 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: _height * 0.0384,
             ),
             ElevatedButton(
               onPressed: () {
+                appointmentDateTime = combine(appointmentDateTime, time);
                 final user = FirebaseAuth.instance.currentUser!;
                 FirebaseFirestore.instance
                     .collection('Appointments')
@@ -199,9 +198,12 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                 //     MaterialPageRoute(builder: (context) => const AppDrawer()));
 
                 while (Navigator.canPop(context)) {
+                  Future.delayed(const Duration(microseconds: 10));
                   Navigator.pop(context);
                 }
-
+                setState(() {
+                  pageIndex = 0;
+                });
                 Fluttertoast.showToast(
                   msg: 'Date and time have been saved',
                   toastLength: Toast.LENGTH_SHORT,
@@ -211,10 +213,10 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   fontSize: 20.0,
                 );
               },
-              child: const Text(
+              child: Text(
                 'CONFIRM DATE AND TIME',
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: _height * 0.0256,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
                 ),
@@ -223,7 +225,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                 primary: Colors.greenAccent.shade400.withOpacity(0.6),
                 shadowColor: Colors.green.shade800,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
+                    borderRadius: BorderRadius.circular(25)),
                 padding: const EdgeInsets.all(20),
               ),
             ),

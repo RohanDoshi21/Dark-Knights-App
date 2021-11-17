@@ -18,10 +18,6 @@ class LoginScreen extends StatelessWidget {
           children: [
             Container(
               color: Colors.white.withOpacity(0.8),
-              child: const Text(
-                "Dark screen",
-                style: TextStyle(color: Colors.white),
-              ),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
             ),
@@ -52,7 +48,10 @@ class LoginScreen extends StatelessWidget {
                               child: Image.asset("assets/images/login2.jpg"),
                             ),
                           ),
-                          //TODO: A small tagline
+                          const Text(
+                            "Cloud Accounting",
+                            style: TextStyle(fontSize: 25),
+                          ),
                           const Padding(
                             padding: EdgeInsets.all(18.0),
                             child: Text(

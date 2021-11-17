@@ -7,13 +7,21 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Expanded(
-          child: Messages(),
+    return SafeArea(
+      child: Container(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Column(
+            children: const [
+              Expanded(
+                child: Messages(),
+              ),
+              NewMessage(),
+            ],
+          ),
         ),
-        NewMessage(),
-      ],
+      ),
     );
   }
 }

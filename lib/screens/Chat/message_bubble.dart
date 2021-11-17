@@ -7,7 +7,7 @@ class MessageBubble extends StatelessWidget {
     this.userName,
     this.userImageUrl,
     this.isMe,
- );
+  );
 
   final String message;
   final String userName;
@@ -17,7 +17,8 @@ class MessageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      clipBehavior: Clip.none, children: [
+      clipBehavior: Clip.none,
+      children: [
         Row(
           mainAxisAlignment:
               isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -25,18 +26,22 @@ class MessageBubble extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 // ignore: deprecated_member_use
-                color: isMe ? Colors.grey[300] : Theme.of(context).accentColor,
+                color: isMe ? Color(0xff8564d6) : Color(0xffe5e5e5),
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(12),
                   topRight: const Radius.circular(12),
-                  bottomLeft: !isMe ? const Radius.circular(0) : const Radius.circular(12),
-                  bottomRight: isMe ? const Radius.circular(0) : const Radius.circular(12),
+                  bottomLeft: !isMe
+                      ? const Radius.circular(0)
+                      : const Radius.circular(12),
+                  bottomRight: isMe
+                      ? const Radius.circular(0)
+                      : const Radius.circular(12),
                 ),
               ),
-              width: 140,
+              width: MediaQuery.of(context).size.width * 0.55,
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
-                horizontal: 16,
+                horizontal: 20,
               ),
               margin: const EdgeInsets.symmetric(
                 vertical: 16,
@@ -49,21 +54,18 @@ class MessageBubble extends StatelessWidget {
                   Text(
                     userName,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: isMe
-                          ? Colors.black
-                          // ignore: deprecated_member_use
-                          : Theme.of(context).accentTextTheme.headline6!.color,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        color: isMe ? Colors.white : Colors.black
+                        // ignore: deprecated_member_use
+                        // : Theme.of(context).accentTextTheme.headline6!.color,
+                        ),
                   ),
                   Text(
                     message,
-                    style: TextStyle(
-                      color: isMe
-                          ? Colors.black
-                          // ignore: deprecated_member_use
-                          : Theme.of(context).accentTextTheme.headline6!.color,
-                    ),
+                    style: TextStyle(color: isMe ? Colors.white : Colors.black
+                        // ignore: deprecated_member_use
+                        // : Theme.of(context).accentTextTheme.headline6!.color,
+                        ),
                     textAlign: isMe ? TextAlign.end : TextAlign.start,
                   ),
                 ],
@@ -73,8 +75,8 @@ class MessageBubble extends StatelessWidget {
         ),
         Positioned(
           top: 0,
-          left: isMe ? null : 120,
-          right: isMe ? 120 : null,
+          left: isMe ? null : 200,
+          right: isMe ? 200 : null,
           child: CircleAvatar(
             backgroundImage: NetworkImage(
               userImageUrl,

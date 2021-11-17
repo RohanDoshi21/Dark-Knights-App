@@ -40,22 +40,22 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
     final _height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.cyan.shade200.withOpacity(0.9), //temporary color
+      backgroundColor: const Color(0xff010413),
       appBar: AppBar(
+        elevation: 3,
         title: const Text(
           'Book an appointment',
           style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+              color: Color(0xff5ad0b5),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Lato'),
         ),
         leading: const Icon(
           Icons.event_available_outlined,
-          color: Colors.white,
+          color: Color(0xff5ad0b5),
         ),
         shadowColor: Colors.blueGrey.shade900,
-        backgroundColor:
-            Colors.cyan, //temporary color added //to be changed later
+        backgroundColor: const Color(0xff010413),
       ),
       body: SafeArea(
         child: Column(
@@ -67,12 +67,11 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
             ),
             Container(
               padding: const EdgeInsets.all(15.0),
-              // margin: const EdgeInsets.(37.0),
               margin: const EdgeInsets.symmetric(horizontal: 37),
-              decoration: BoxDecoration(
-                color: Colors.cyan.shade800.withOpacity(0.4),
+              decoration: const BoxDecoration(
+                color: Color(0xff403ffc),
                 shape: BoxShape.rectangle,
-                borderRadius: const BorderRadius.all(Radius.circular(25)),
+                borderRadius: BorderRadius.all(Radius.circular(25)),
               ),
               width: MediaQuery.of(context).size.width * 0.82,
               height: MediaQuery.of(context).size.height * 0.55,
@@ -84,10 +83,9 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   Text(
                     'Choose a suitable date',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
-                      fontSize: _height * 0.032,
-                      fontWeight: FontWeight.w800,
-                    ),
+                        fontSize: _height * 0.032,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'Lato'),
                   ),
                   SizedBox(
                     height: _height * 0.0128,
@@ -95,10 +93,9 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   Text(
                     date,
                     style: TextStyle(
-                      fontSize: _height * 0.0384,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                        fontSize: _height * 0.0384,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Lato'),
                   ),
                   SizedBox(
                     height: _height * 0.0128,
@@ -121,7 +118,6 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   Divider(
                     height: _height * 0.0384,
                     thickness: 1.0,
-                    color: Colors.white,
                   ),
                   SizedBox(
                     height: _height * 0.0128,
@@ -129,10 +125,9 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   Text(
                     'Choose a time slot',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
-                      fontSize: _height * 0.032,
-                      fontWeight: FontWeight.w800,
-                    ),
+                        fontSize: _height * 0.032,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'Lato'),
                   ),
                   SizedBox(
                     height: _height * 0.0128,
@@ -140,10 +135,9 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   Text(
                     getTiming(),
                     style: TextStyle(
-                      fontSize: _height * 0.0384,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                        fontSize: _height * 0.0384,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Lato'),
                   ),
                   SizedBox(
                     height: _height * 0.0128,
@@ -167,10 +161,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   ),
                   const Text(
                     'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.black,
-                    ),
+                    style: TextStyle(fontSize: 18.0, fontFamily: 'Lato'),
                   ),
                 ],
               ),
@@ -219,6 +210,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   fontSize: _height * 0.0256,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
+                  fontFamily: 'Lato'
                 ),
               ),
               style: ElevatedButton.styleFrom(

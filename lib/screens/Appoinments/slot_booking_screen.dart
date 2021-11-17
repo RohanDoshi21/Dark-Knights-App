@@ -1,40 +1,46 @@
 //import 'package:appointment_status/screens/appointment_status_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:darkknightspict/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
-import 'appointment_status_screen.dart';
+// import 'appointment_status_screen.dart';
 
 // ignore: use_key_in_widget_constructors
 class AppointmentsHome extends StatefulWidget {
-
   @override
   _AppointmentsHomeState createState() => _AppointmentsHomeState();
 }
 
-class _AppointmentsHomeState extends State<AppointmentsHome> {
-    late DateTime _myDateTime;
-    String date='_______';
-     TimeOfDay time=TimeOfDay.now();
+DateTime combine(DateTime date, TimeOfDay? time) => DateTime(
+    date.year, date.month, date.day, time?.hour ?? 0, time?.minute ?? 0);
 
-    String getTiming(){//will return the timing in a string format
-     // ignore: unnecessary_null_comparison
-     if(time==null){
-       return '___';
-     }
-     else{
-       final hours=time.hour.toString().padLeft(2,'0');
-       final minutes=time.minute.toString().padLeft(2,'0');
+class _AppointmentsHomeState extends State<AppointmentsHome> {
+  late DateTime _myDateTime;
+  String date = '_______';
+  TimeOfDay time = TimeOfDay.now();
+  DateTime appointmentDateTime = DateTime.now();
+
+  String getTiming() {
+    //will return the timing in a string format
+    // ignore: unnecessary_null_comparison
+    if (time == null) {
+      return '___';
+    } else {
+      final hours = time.hour.toString().padLeft(2, '0');
+      final minutes = time.minute.toString().padLeft(2, '0');
       return '$hours: $minutes';
-     }
     }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.cyan.shade200.withOpacity(0.9),//temporary color
+      backgroundColor: Colors.cyan.shade200.withOpacity(0.9), //temporary color
       appBar: AppBar(
         title: const Text(
           'Book an appointment',
@@ -48,7 +54,8 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
           color: Colors.white,
         ),
         shadowColor: Colors.blueGrey.shade900,
-        backgroundColor: Colors.cyan,//temporary color added //to be changed later
+        backgroundColor:
+            Colors.cyan, //temporary color added //to be changed later
       ),
       body: SafeArea(
         child: Column(
@@ -59,7 +66,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
               height: 30.0,
             ),
             Container(
-              padding:const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               // margin: const EdgeInsets.(37.0),
               margin: const EdgeInsets.symmetric(horizontal: 37),
               decoration: BoxDecoration(
@@ -74,14 +81,14 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   const SizedBox(
                     height: 10.0,
                   ),
-                 Text(
-                   'Choose a suitable date',
-                   style: TextStyle(
-                     color:Colors.white.withOpacity(0.7),
-                     fontSize: 25.0,
-                     fontWeight:FontWeight.w800,
-                   ),
-                 ),
+                  Text(
+                    'Choose a suitable date',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.7),
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                   const SizedBox(
                     height: 10.0,
                   ),
@@ -97,18 +104,18 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     height: 10.0,
                   ),
                   ElevatedButton(
-                      onPressed: () async{
-                        _myDateTime= (
-                            await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2021),
-                            lastDate: DateTime(2050),
-                        ))!;
-                        setState(() {
-                             date=DateFormat('dd/MM/yy').format(_myDateTime);
-                        });
-                      },
+                    onPressed: () async {
+                      _myDateTime = (await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2050),
+                      ))!;
+                      setState(() {
+                        date = DateFormat('dd/MM/yy').format(_myDateTime);
+                        appointmentDateTime = _myDateTime;
+                      });
+                    },
                     child: const Text('Choose date'),
                   ),
                   const Divider(
@@ -122,17 +129,17 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   Text(
                     'Choose a time slot',
                     style: TextStyle(
-                      color:Colors.white.withOpacity(0.7),
+                      color: Colors.white.withOpacity(0.7),
                       fontSize: 25.0,
-                      fontWeight:FontWeight.w800,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(
                     height: 10.0,
                   ),
                   Text(
-                  getTiming(),
-                    style:  const TextStyle(
+                    getTiming(),
+                    style: const TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -142,18 +149,20 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     height: 10.0,
                   ),
                   ElevatedButton(
-                      onPressed: () async{
-                        final newTime= await showTimePicker(
-                            context: context,
-                            initialTime:TimeOfDay.now(),
-                        );
-                        setState(() {
-                            time=newTime!;
-                        });
-                      },
-                      child: const Text(
-                        'Choose timing',
-                      ),
+                    onPressed: () async {
+                      final newTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+                      setState(() {
+                        time = newTime!;
+                        appointmentDateTime =
+                            combine(appointmentDateTime, time);
+                      });
+                    },
+                    child: const Text(
+                      'Choose timing',
+                    ),
                   ),
                   const SizedBox(
                     height: 10.0,
@@ -169,15 +178,32 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
               ),
             ),
             const SizedBox(
-              height : 30,
+              height: 30,
             ),
             ElevatedButton(
-              onPressed:(){
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return AppointmentStatus(date: date, time: getTiming());
-                }));
+              onPressed: () {
+                final user = FirebaseAuth.instance.currentUser!;
+                FirebaseFirestore.instance
+                    .collection('Appointments')
+                    .doc(user.uid)
+                    .set({
+                  'displayName': user.displayName,
+                  'email': user.email,
+                  'uid': user.uid,
+                  'dateTime': appointmentDateTime,
+                  'photoURL': user.photoURL,
+                  'status': 'Pending',
+                });
+
+                // Navigator.pushReplacement(context,
+                //     MaterialPageRoute(builder: (context) => const AppDrawer()));
+
+                while (Navigator.canPop(context)) {
+                  Navigator.pop(context);
+                }
+
                 Fluttertoast.showToast(
-                    msg: 'Date and time have been saved',
+                  msg: 'Date and time have been saved',
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   backgroundColor: Colors.green.withOpacity(0.7),
@@ -196,10 +222,9 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
               style: ElevatedButton.styleFrom(
                 primary: Colors.greenAccent.shade400.withOpacity(0.6),
                 shadowColor: Colors.green.shade800,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)
-                  ),
-                  padding: const EdgeInsets.all(20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                padding: const EdgeInsets.all(20),
               ),
             ),
           ],

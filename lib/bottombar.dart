@@ -1,5 +1,6 @@
 // import 'package:darkknightspict/screens/Appoinments/appointments.dart';
-import 'package:darkknightspict/screens/Appoinments/slot_booking_screen.dart';
+import 'package:darkknightspict/screens/Appoinments/appointment_status_screen.dart';
+// import 'package:darkknightspict/screens/Appoinments/slot_booking_screen.dart';
 import 'package:darkknightspict/screens/Chat/chat_screen.dart';
 import 'package:darkknightspict/screens/Files/file_home.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class _BottomBarState extends State<BottomBar> {
 
   PageController _pageController = PageController();
   List<Widget> pages = [
-    AppointmentsHome(),
+    // AppointmentsHome(),
+    const AppointmentStatus(),
     const ChatScreen(),
     const FileHome()
   ];

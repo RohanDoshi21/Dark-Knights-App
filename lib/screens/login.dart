@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 50,
                                     width: 50,
                                     child: ClipRRect(
@@ -104,33 +104,71 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
+                          // Container(
+                          //   padding: const EdgeInsets.all(8),
+                          //   decoration: BoxDecoration(
+                          //       color: const Color(0xffE1E5EA),
+                          //       borderRadius: BorderRadius.circular(25)),
+                          //   child: InkWell(
+                          //     onTap: () {},
+                          //     child: Row(
+                          //       mainAxisSize: MainAxisSize.min,
+                          //       mainAxisAlignment:
+                          //           MainAxisAlignment.spaceEvenly,
+                          //       children: [
+                          //         Container(
+                          //           height: 50,
+                          //           width: 95,
+                          //           decoration:
+                          //               const BoxDecoration(shape: BoxShape.circle),
+                          //           child:
+                          //               Image.asset("assets/images/Admin.png"),
+                          //         ),
+                          //         const Text(
+                          //           "Admin Login",
+                          //           textAlign: TextAlign.center,
+                          //         )
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                                 color: const Color(0xffE1E5EA),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const InitialPageAdmin(),
+                                  ),
+                                );
+                              },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 50,
-                                    width: 95,
-                                    decoration:
-                                        BoxDecoration(shape: BoxShape.circle),
-                                    child:
-                                        Image.asset("assets/images/Admin.png"),
+                                    width: 50,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(25),
+                                        child: Image.asset(
+                                            "assets/images/Admin.png")),
                                   ),
-                                  const Text(
-                                    "Admin Login",
-                                    textAlign: TextAlign.center,
-                                  )
+                                  const SizedBox(
+                                    width: 25,
+                                  ),
+                                  const Text("Admin Login"),
+                                  const SizedBox(
+                                    width: 25,
+                                  ),
                                 ],
                               ),
                             ),
@@ -150,7 +188,7 @@ class LoginScreen extends StatelessWidget {
                           //   },
                           //   child: const Text("Admin Login"),
                           // ),
-                          Spacer()
+                          const Spacer()
                         ],
                       ),
                     ),

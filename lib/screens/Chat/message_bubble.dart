@@ -33,7 +33,7 @@ class MessageBubble extends StatelessWidget {
                   bottomRight: isMe ? const Radius.circular(0) : const Radius.circular(12),
                 ),
               ),
-              width: 140,
+              width: 230,
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 16,
@@ -73,8 +73,8 @@ class MessageBubble extends StatelessWidget {
         ),
         Positioned(
           top: 0,
-          left: isMe ? null : 120,
-          right: isMe ? 120 : null,
+          left: isMe ? null : 210,
+          right: isMe ? 210 : null,
           child: CircleAvatar(
             backgroundImage: NetworkImage(
               userImageUrl,

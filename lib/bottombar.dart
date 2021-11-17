@@ -41,6 +41,7 @@ class _BottomBarState extends State<BottomBar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: pageIndex,
         onTap: gotoPage,
+        // backgroundColor: Color(0xff7061fa),
         backgroundColor: Colors.white,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Appointment"),

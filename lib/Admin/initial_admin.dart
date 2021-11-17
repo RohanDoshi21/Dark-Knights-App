@@ -1,3 +1,4 @@
+import 'package:darkknightspict/Admin/Appoinments/admin_appointments.dart';
 import 'package:flutter/material.dart';
 
 import 'Appoinments/appointments.dart';
@@ -14,7 +15,8 @@ class InitialPageAdmin extends StatefulWidget {
 class _InitialPageAdminState extends State<InitialPageAdmin> {
   int _selectedIndex = 1;
   static const List<Widget> pages = <Widget>[
-    AppointmentsHomeAdmin(),
+    // AppointmentsHomeAdmin(),
+    ClientStatus(),
     ChatHome(),
     FileHomeAdmin(),
   ];
@@ -28,10 +30,10 @@ class _InitialPageAdminState extends State<InitialPageAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: AppDrawer(),
-      appBar: AppBar(
-        title: const Text("Cloud Accounting"),
-      ),
+      // // drawer: AppDrawer(),
+      // appBar: AppBar(
+      //   title: const Text("Cloud Accounting"),
+      // ),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,

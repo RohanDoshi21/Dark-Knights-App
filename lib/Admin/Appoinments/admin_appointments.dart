@@ -1,24 +1,12 @@
 import 'dart:core';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:darkknightspict/Admin/Chat/clientuid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class ClientDetails {
-    late final String name;
-    late final String emailId;
-    //late final DateTime appointmentDate;
-    //late final DateTime appointmentTime;
-    // late final ImageProvider image;
-
-    ClientDetails(
-        {
-          //required this.appointmentDate,
-          //required this.appointmentTime,
-          required this.emailId,
-          //required this.image,
-          required this.name,
-        });
-}
+import '../admin_info.dart';
 
 class ClientStatus extends StatefulWidget {
   const ClientStatus({Key? key}) : super(key: key);
@@ -28,44 +16,6 @@ class ClientStatus extends StatefulWidget {
 }
 
 class _ClientStatusState extends State<ClientStatus> {
-  List <ClientDetails>  details=[
-    ClientDetails(
-        //appointmentDate:
-        //appointmentTime: ,
-        emailId: 'EmailID',
-      //image: NetworkImage(), TODO: Image to be added
-        name: 'Client1',
-        ),
-    ClientDetails(
-      // appointmentDate:
-      // appointmentTime:
-      emailId: 'EmailID',
-      //image: NetworkImage(),
-      name: 'Client2',
-    ),
-    ClientDetails(
-      // appointmentDate:
-      // appointmentTime:
-      emailId: 'EmailID',
-      //image: NetworkImage(),
-      name: 'Client3',
-    ),
-    ClientDetails(
-      // appointmentDate:
-      // appointmentTime:
-      emailId: 'EmailID',
-      //image: NetworkImage(),
-      name: 'Client4',
-    ),
-    ClientDetails(
-      // appointmentDate:
-      // appointmentTime:
-      emailId: 'EmailID',
-      //image: NetworkImage(),
-      name: 'Client5',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,110 +31,193 @@ class _ClientStatusState extends State<ClientStatus> {
         centerTitle: true,
         shadowColor: Colors.black,
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(15),
-        itemCount: details.length,
-          itemBuilder: (context, index){
-             return Container(
-               decoration: BoxDecoration(
-                 color: Colors.cyan.withOpacity(0.3),
-                 borderRadius: BorderRadius.circular(20.0),
-               ),
-               //width: MediaQuery.of(context).size.width*0.82,
-               height: MediaQuery.of(context).size.height*0.20,
-               child: Row(
-                 children: [
-                   const SizedBox(
-                     width: 30.0,
-                   ),
-                    CircleAvatar(
-                     radius: 40.0,
-                    //backgroundImage: details[index].image,
-                     backgroundColor: Colors.blue,//temporarily added
-                   ),
-                   const SizedBox(
-                     width:25.0,
-                   ),
-                   Column(
-                     children: [
-                       const SizedBox(
-                         height: 40.0,
-                       ),
-                       Text(
-                         details[index].name,
-                         style: const TextStyle(
-                           fontWeight:FontWeight.w600,
-                           fontSize: 24.0,
-                         ),
-                       ),
-                       Text(
-                         details[index].emailId,
-                         style: const TextStyle(
-                           fontSize: 15.0,
-                           fontWeight: FontWeight.w600,
-                         ),
-                       ),
-                       const SizedBox(
-                         height: 10.0,
-                       ),
-                       // Text(
-                       //   'Date: ${details[index].appointmentDate}',
-                       //   style: const TextStyle(
-                       //     fontSize: 17.0,
-                       //     fontWeight:FontWeight.w700,
-                       //   ),
-                       // ),
-                       const SizedBox(
-                         height: 10.0,
-                       ),
-                       // Text(
-                       //   'Time: ${details[index].appointmentTime}',
-                       //   style: const TextStyle(
-                       //     fontSize: 17.0,
-                       //     fontWeight:FontWeight.w700,
-                       //   ),
-                       // ),
-                     ],
-                   ),
-                   const SizedBox(
-                     width: 10.0,
-                   ),
-                   Column(
-                     children: [
-                       const SizedBox(
-                         height: 30.0,
-                       ),
-                       IconButton(
-                           onPressed:(){
-                             //TODO: Update the client side UI
-                           },
-                         icon: const Icon(
-                           Icons.check,
-                           color: Colors.green,
-                           size: 35.0,
-                         ),
-                       ),
-                       const SizedBox(
-                         height: 20.0,
-                       ),
-                       IconButton(
-                         onPressed:(){
-                           //TODO: Update the client side UI
-                         },
-                         icon: const Icon(
-                           Icons.close,
-                           color: Colors.red,
-                           size: 35.0,
-                         ),
-                       ),
-                     ],
-                   ),
-                 ],
-               ),
-             );
-          },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('Appointments')
+            .orderBy('dateTime', descending: true)
+            .snapshots(),
+        builder: (ctx, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          final details = snapshot.data!.docs;
+          return ListView.separated(
+            padding: const EdgeInsets.all(15),
+            itemCount: details.length,
+            itemBuilder: (context, index) {
+              return Container(
+                child: details[index]['status'] == 'Pending'
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: Colors.cyan.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        //width: MediaQuery.of(context).size.width*0.82,
+                        height: MediaQuery.of(context).size.height * 0.16,
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 20.0,
+                            ),
+                            CircleAvatar(
+                              radius: 40.0,
+                              backgroundImage:
+                                  NetworkImage(details[index]['photoURL']),
+                              backgroundColor: Colors.blue, //temporarily added
+                            ),
+                            const SizedBox(
+                              width: 15.0,
+                            ),
+                            Column(
+                              children: [
+                                const SizedBox(
+                                  height: 12.0,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    details[index]['displayName'],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 22.0,
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    details[index]['email'],
+                                    style: const TextStyle(
+                                      fontSize: 13.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  'Date: ' +
+                                      DateFormat.MMMMd()
+                                          .format(details[index]['dateTime']
+                                              .toDate())
+                                          .toString(),
+                                  style: const TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  'Time: ' +
+                                      DateFormat.jm()
+                                          .format(details[index]['dateTime']
+                                              .toDate())
+                                          .toString(),
+                                  style: const TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                IconButton(
+                                  // accept button
+                                  onPressed: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection('Appointments')
+                                        .doc(details[index]['uid'])
+                                        .update({
+                                      'status': "Accepted",
+                                    });
+                                    await FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(details[index]['uid'])
+                                        .collection('Chats')
+                                        .add({
+                                      "displayName": AdminInfo.displayName,
+                                      "phoneNumber": AdminInfo.phoneNumber,
+                                      "email": AdminInfo.email,
+                                      "photoURL": AdminInfo.photoURL,
+                                      "uid": AdminInfo.uid,
+                                      "createdAt": Timestamp.now(),
+                                      "Message":
+                                          "Your Appoinment has been confirmed!",
+                                    });
+                                    await FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(details[index]['uid'])
+                                        .update({
+                                      "lastMessageTime": Timestamp.now(),
+                                    });
+                                  },
+                                  icon: const Icon(
+                                    Icons.check,
+                                    color: Colors.green,
+                                    size: 35.0,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                IconButton(
+                                  //Delete Button
+                                  onPressed: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection('Appointments')
+                                        .doc(details[index]['uid'])
+                                        .delete();
+                                    await FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(details[index]['uid'])
+                                        .collection('Chats')
+                                        .add({
+                                      "displayName": AdminInfo.displayName,
+                                      "phoneNumber": AdminInfo.phoneNumber,
+                                      "email": AdminInfo.email,
+                                      "photoURL": AdminInfo.photoURL,
+                                      "uid": AdminInfo.uid,
+                                      "createdAt": Timestamp.now(),
+                                      "Message":
+                                          "Sorry for inconvinience, I am a bit busy at that time! Could you book an appointment at any other time perhaps?",
+                                    });
+                                    await FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(details[index]['uid'])
+                                        .update({
+                                      "lastMessageTime": Timestamp.now(),
+                                    });
+                                  },
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                    size: 35.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    : null,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
+          );
+        },
       ),
     );
   }
 }
+  

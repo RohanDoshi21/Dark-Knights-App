@@ -1,5 +1,6 @@
 // import 'package:darkknightspict/screens/Appoinments/appointments.dart';
-import 'package:darkknightspict/screens/Appoinments/slot_booking_screen.dart';
+import 'package:darkknightspict/screens/Appoinments/appointment_status_screen.dart';
+// import 'package:darkknightspict/screens/Appoinments/slot_booking_screen.dart';
 import 'package:darkknightspict/screens/Chat/chat_screen.dart';
 import 'package:darkknightspict/screens/Files/file_home.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,20 @@ class BottomBar extends StatefulWidget {
   State<BottomBar> createState() => _BottomBarState();
 }
 
-class _BottomBarState extends State<BottomBar> {
-  int _pageIndex = 0;
+int pageIndex = 0;
 
+class _BottomBarState extends State<BottomBar> {
   PageController _pageController = PageController();
   List<Widget> pages = [
-    AppointmentsHome(),
+    // AppointmentsHome(),
+    const AppointmentStatus(),
     const ChatScreen(),
     const FileHome()
   ];
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _pageIndex);
+    _pageController = PageController(initialPage: pageIndex);
   }
 
   @override
@@ -37,7 +39,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageIndex,
+        currentIndex: pageIndex,
         onTap: gotoPage,
         // backgroundColor: Color(0xff7061fa),
         backgroundColor: Colors.white,
@@ -59,7 +61,7 @@ class _BottomBarState extends State<BottomBar> {
 
   void onPageChanged(int page) {
     setState(() {
-      _pageIndex = page;
+      pageIndex = page;
       // print(page);
     });
   }

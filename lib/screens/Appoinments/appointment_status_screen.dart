@@ -58,16 +58,17 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
           builder: (context, snapshot) {
             if (isBooked == true) {
               return Scaffold(
-                backgroundColor: Colors.cyan.withOpacity(0.8),
+                backgroundColor: Color(0xff010413),
                 appBar: AppBar(
                   title: const Text(
                     'Appointment Status',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Lato',
                     ),
                   ),
-                  backgroundColor: Colors.cyan,
+                  backgroundColor: Color(0xff403ffc),
                   centerTitle: true,
                   shadowColor: Colors.blue.shade800,
                 ),
@@ -78,7 +79,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                       padding: const EdgeInsets.all(13.0),
                       margin: const EdgeInsets.all(37.0),
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Color(0xff403ffc),
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
@@ -103,7 +104,8 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                             // 'NAME OF THE CLIENT',
                             displayName,
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
+                              fontFamily: 'Lato',
                               fontWeight: FontWeight.w700,
                               fontSize: _height * 0.032,
                             ),
@@ -114,6 +116,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                           Text(
                             'Date of Appointment:',
                             style: TextStyle(
+                              fontFamily: 'Lato',
                               fontSize: _height * 0.0256,
                               fontWeight: FontWeight.w700,
                             ),
@@ -124,7 +127,9 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                           Text(
                             date,
                             style: TextStyle(
-                              color: Colors.black,
+                              fontFamily: 'Lato',
+                              // color: Colors.black,
+                              color: Colors.white,
                               fontSize: _height * 0.0256,
                             ),
                           ),
@@ -134,6 +139,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                           Text(
                             'Time of Appointment:',
                             style: TextStyle(
+                              fontFamily: 'Lato',
                               fontSize: _height * 0.0256,
                               fontWeight: FontWeight.w700,
                             ),
@@ -144,7 +150,8 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                           Text(
                             time,
                             style: TextStyle(
-                              color: Colors.black,
+                              fontFamily: 'Lato',
+                              color: Colors.white,
                               fontSize: _height * 0.0256,
                             ),
                           ),
@@ -166,11 +173,13 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                               status,
                               style: status == 'Pending'
                                   ? TextStyle(
+                                     fontFamily: 'Lato',
                                       fontSize: _height * 0.0256,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.yellow.shade800,
                                     )
                                   : TextStyle(
+                                     fontFamily: 'Lato',
                                       fontSize: _height * 0.0256,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.green.shade800,

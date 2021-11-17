@@ -19,12 +19,14 @@ class _ClientStatusState extends State<ClientStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff010413),
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
+        backgroundColor:Color(0xff403ffc),
         title: const Text(
           ' Client Appointments',
           style: TextStyle(
             fontSize: 25.0,
+            fontFamily: 'Lato',
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -51,7 +53,7 @@ class _ClientStatusState extends State<ClientStatus> {
                 child: details[index]['status'] == 'Pending'
                     ? Container(
                         decoration: BoxDecoration(
-                          color: Colors.cyan.withOpacity(0.3),
+                          color:Color(0xff403ffc).withOpacity(0.5),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         //width: MediaQuery.of(context).size.width*0.82,
@@ -81,6 +83,7 @@ class _ClientStatusState extends State<ClientStatus> {
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 22.0,
+                                      fontFamily: 'Lato',
                                     ),
                                   ),
                                 ),
@@ -89,6 +92,7 @@ class _ClientStatusState extends State<ClientStatus> {
                                     details[index]['email'],
                                     style: const TextStyle(
                                       fontSize: 13.0,
+                                      fontFamily: 'Lato',
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -104,6 +108,7 @@ class _ClientStatusState extends State<ClientStatus> {
                                           .toString(),
                                   style: const TextStyle(
                                     fontSize: 15.0,
+                                    fontFamily: 'Lato',
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -118,6 +123,7 @@ class _ClientStatusState extends State<ClientStatus> {
                                           .toString(),
                                   style: const TextStyle(
                                     fontSize: 15.0,
+                                    fontFamily: 'Lato',
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),

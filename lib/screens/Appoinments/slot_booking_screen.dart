@@ -101,6 +101,11 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     height: _height * 0.0128,
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                       primary: Color(0xff010413),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                    ),
                     onPressed: () async {
                       _myDateTime = (await showDatePicker(
                         context: context,
@@ -113,7 +118,12 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                         appointmentDateTime = _myDateTime;
                       });
                     },
-                    child: const Text('Choose date'),
+                    child:  const Text(
+                        'Choose date',
+                    style:TextStyle(
+                      fontFamily: 'Lato',
+                    ),
+                    ),
                   ),
                   Divider(
                     height: _height * 0.0384,
@@ -143,6 +153,11 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     height: _height * 0.0128,
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff010413),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                    ),
                     onPressed: () async {
                       final newTime = await showTimePicker(
                         context: context,
@@ -154,15 +169,18 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                     },
                     child: const Text(
                       'Choose timing',
+                      style:TextStyle(
+                        fontFamily: 'Lato',
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: _height * 0.0128,
                   ),
-                  const Text(
-                    'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
-                    style: TextStyle(fontSize: 18.0, fontFamily: 'Lato'),
-                  ),
+                  // const Text(
+                  //   'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
+                  //   style: TextStyle(fontSize: 18.0, fontFamily: 'Lato'),
+                  // ),
                 ],
               ),
             ),

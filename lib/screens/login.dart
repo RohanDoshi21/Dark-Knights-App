@@ -1,6 +1,6 @@
 // import 'package:darkknightspict/Admin/chat_home.dart';
 import 'package:darkknightspict/Admin/initial_admin.dart';
-import 'package:darkknightspict/drawer.dart';
+import 'package:darkknightspict/bottombar.dart';
 // import 'package:darkknightspict/initial_page.dart';
 // import 'package:darkknightspict/screens/Chat/chat_screen.dart';
 import 'package:darkknightspict/services/google_signin.dart';
@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              color: Colors.white.withOpacity(0.8),
+              color: const Color(0xff010413),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
             ),
@@ -50,14 +50,21 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const Text(
                             "Cloud Accounting",
-                            style: TextStyle(fontSize: 25),
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: 'Lato',
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff010413)),
                           ),
                           const Padding(
                             padding: EdgeInsets.all(18.0),
                             child: Text(
                               "\"- An efficient and easy CA-Client interaction android application\"",
                               style: TextStyle(
-                                  fontSize: 20, fontStyle: FontStyle.italic),
+                                  fontSize: 20,
+                                  fontFamily: 'Lato',
+                                  fontStyle: FontStyle.italic,
+                                  color: Color(0xff010413)),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -70,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                                color: const Color(0xffE1E5EA),
+                                color: const Color(0xff010413),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
                               onTap: () {
@@ -79,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const AppDrawer(),
+                                              const BottomBar(),
                                         ),
                                       ),
                                     );
@@ -99,7 +106,13 @@ class LoginScreen extends StatelessWidget {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  const Text("Sign-In with Google")
+                                  const Text(
+                                    "Sign-In with Google",
+                                    style: TextStyle(
+                                        fontFamily: 'Lato',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  )
                                 ],
                               ),
                             ),
@@ -138,7 +151,7 @@ class LoginScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                                color: const Color(0xffE1E5EA),
+                                color: const Color(0xff010413),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
                               onTap: () {
@@ -163,11 +176,15 @@ class LoginScreen extends StatelessWidget {
                                             "assets/images/Admin.png")),
                                   ),
                                   const SizedBox(
-                                    width: 25,
+                                    width: 30,
                                   ),
-                                  const Text("Admin Login"),
+                                  const Text("Admin Login",
+                                      style: TextStyle(
+                                          fontFamily: 'Lato',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)),
                                   const SizedBox(
-                                    width: 25,
+                                    width: 30,
                                   ),
                                 ],
                               ),

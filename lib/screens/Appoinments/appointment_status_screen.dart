@@ -161,6 +161,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                           Text(
                             'Appointment Status:',
                             style: TextStyle(
+                              fontFamily: 'Lato',
                               fontSize: _height * 0.0256,
                               fontWeight: FontWeight.w700,
                             ),

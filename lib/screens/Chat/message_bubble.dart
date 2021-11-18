@@ -26,7 +26,7 @@ class MessageBubble extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 // ignore: deprecated_member_use
-                color: isMe ? Color(0xff8564d6) : Color(0xffe5e5e5),
+                color: isMe ? const Color(0xff5ad0b5) : const Color(0xff403ffc),
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(12),
                   topRight: const Radius.circular(12),
@@ -55,17 +55,19 @@ class MessageBubble extends StatelessWidget {
                     userName,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: isMe ? Colors.white : Colors.black
+                        color: isMe ? Colors.black : Colors.white
                         // ignore: deprecated_member_use
                         // : Theme.of(context).accentTextTheme.headline6!.color,
                         ),
                   ),
                   Text(
                     message,
-                    style: TextStyle(color: isMe ? Colors.white : Colors.black
-                        // ignore: deprecated_member_use
-                        // : Theme.of(context).accentTextTheme.headline6!.color,
-                        ),
+                    style: TextStyle(
+                      color: isMe ? Colors.black : Colors.white,
+                      fontSize: 17,
+                      // ignore: deprecated_member_use
+                      // : Theme.of(context).accentTextTheme.headline6!.color,
+                    ),
                     textAlign: isMe ? TextAlign.end : TextAlign.start,
                   ),
                 ],

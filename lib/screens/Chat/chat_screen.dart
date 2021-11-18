@@ -11,7 +11,7 @@ class ChatScreen extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(color: Colors.white),
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color(0xff010413),
           body: Column(
             children: const [
               Expanded(

@@ -52,6 +52,7 @@ class _NewMessageState extends State<NewMessage> {
               child: TextField(
                 textInputAction: TextInputAction.send,
                 controller: _controller,
+                style: const TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   contentPadding: EdgeInsets.all(10),

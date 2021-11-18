@@ -74,7 +74,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                 borderRadius: BorderRadius.all(Radius.circular(25)),
               ),
               width: MediaQuery.of(context).size.width * 0.82,
-              height: MediaQuery.of(context).size.height * 0.55,
+              height: MediaQuery.of(context).size.height * 0.58,
               child: Column(
                 children: [
                   SizedBox(
@@ -177,10 +177,10 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                   SizedBox(
                     height: _height * 0.0128,
                   ),
-                  // const Text(
-                  //   'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
-                  //   style: TextStyle(fontSize: 18.0, fontFamily: 'Lato'),
-                  // ),
+                  const Text(
+                    'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
+                    style: TextStyle(fontSize: 18.0, fontFamily: 'Lato'),
+                  ),
                 ],
               ),
             ),

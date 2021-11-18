@@ -183,7 +183,7 @@ class _AppointmentStatusState extends State<AppointmentStatus> {
                                      fontFamily: 'Lato',
                                       fontSize: _height * 0.0256,
                                       fontWeight: FontWeight.w700,
-                                      color: Colors.green.shade800,
+                                      color: Colors.greenAccent.shade400,
                                     )),
                         ],
                       ),

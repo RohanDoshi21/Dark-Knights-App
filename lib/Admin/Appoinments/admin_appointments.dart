@@ -53,7 +53,7 @@ class _ClientStatusState extends State<ClientStatus> {
                 child: details[index]['status'] == 'Pending'
                     ? Container(
                         decoration: BoxDecoration(
-                          color:Color(0xff403ffc).withOpacity(0.5),
+                          color:const Color(0xff403ffc).withOpacity(0.5),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         //width: MediaQuery.of(context).size.width*0.82,

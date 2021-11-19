@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:darkknightspict/Admin/Chat/clientuid.dart';
 import 'package:darkknightspict/Admin/Files/file_home.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class FileHomeAdmin extends StatefulWidget {
   const FileHomeAdmin({Key? key}) : super(key: key);
@@ -76,17 +75,17 @@ class _FileHomeAdminState extends State<FileHomeAdmin> {
                                 fontFamily: 'Lato',
                               ),
                             ),
-                            Text(
-                              DateFormat.jm()
-                                  .format(_chatTile['lastMessageTime'].toDate())
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.0,
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+                            // Text(
+                            //   DateFormat.jm()
+                            //       .format(_chatTile['lastMessageTime'].toDate())
+                            //       .toString(),
+                            //   style: const TextStyle(
+                            //     color: Colors.white,
+                            //     fontSize: 15.0,
+                            //     fontFamily: 'Lato',
+                            //     fontWeight: FontWeight.w700,
+                            //   ),
+                            // ),
                           ],
                         ),
                         subtitle: _chatTile['phoneNumber'] != null
@@ -115,6 +114,10 @@ class _FileHomeAdminState extends State<FileHomeAdmin> {
                                   ),
                                 ),
                               ),
+                        trailing: const Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          size: 38,
+                        ),
                       ),
                     ),
                     const Divider(

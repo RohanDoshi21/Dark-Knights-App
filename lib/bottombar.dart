@@ -45,11 +45,17 @@ class _BottomBarState extends State<BottomBar> {
         // backgroundColor: Colors.white,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: "Appointments"),
+            icon: Icon(Icons.event_available_outlined),
+            label: 'Appointments',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.messenger_outline_rounded), label: "Chat"),
+            icon: Icon(Icons.messenger_outline_rounded),
+            label: 'Chats',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.file_upload_outlined), label: "Files"),
+            icon: Icon(Icons.file_copy_outlined),
+            label: 'Files',
+          ),
         ],
       ),
       body: PageView(

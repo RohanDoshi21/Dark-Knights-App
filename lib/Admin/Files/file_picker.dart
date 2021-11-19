@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:darkknightspict/Admin/Chat/clientuid.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:path/path.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
-final userUID = FirebaseAuth.instance.currentUser!.uid;
+// final userUID = FirebaseAuth.instance.currentUser!.uid;
 
 class FirebaseApi {
   static UploadTask? uploadFile(String destination, File file) {
@@ -48,7 +49,7 @@ Future uploadFile(context) async {
   if (file == null) return;
 
   final fileName = basename(file!.path);
-  final destination = 'Documents/$userUID/User/$fileName';
+  final destination = 'Documents/$documentOfUID/CA/$fileName';
 
   task = FirebaseApi.uploadFile(destination, file!);
 
@@ -57,13 +58,13 @@ Future uploadFile(context) async {
   final snapshot = await task!.whenComplete(() {});
   final urlDownload = await snapshot.ref.getDownloadURL();
 
-  await FirebaseFirestore.instance
+  FirebaseFirestore.instance
       .collection("Users")
-      .doc(userUID)
+      .doc(documentOfUID)
       .collection("Documents")
       .add({
     'Name': fileName,
-    'Type': "UserDocument",
+    'Type': "CADocument",
     'URL': urlDownload,
     'createdAt': Timestamp.now(),
   });

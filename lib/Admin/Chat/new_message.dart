@@ -44,21 +44,37 @@ class _NewMessageAdminState extends State<NewMessageAdmin> {
         children: [
           //Textfield takes as much space as available therfore wrap it into expanded widget
           Expanded(
-            child: TextField(
-              controller: _controller,
-              decoration: const InputDecoration(labelText: "Send a message.."),
-              onChanged: (val) {
-                setState(() {
-                  _enteredMesaage = val;
-                });
-              },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all()),
+              child: TextField(
+                textInputAction: TextInputAction.send,
+                controller: _controller,
+                style: const TextStyle(color: Colors.black),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(10),
+                  disabledBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  hintText: 'Send a message',
+                ),
+                onChanged: (val) {
+                  setState(() {
+                    _enteredMesaage = val;
+                  });
+                },
+              ),
             ),
           ),
           IconButton(
             onPressed: _enteredMesaage.trim().isEmpty ? null : _sendMessage,
-            icon: Icon(
+            icon: const Icon(
               Icons.send,
-              color: Theme.of(context).primaryColor,
+              // color: Colors.black,
+              color: Color(0xff8564d6),
             ),
           )
         ],

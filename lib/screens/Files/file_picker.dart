@@ -1,7 +1,9 @@
 import 'dart:typed_data';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -42,7 +44,7 @@ Future selectFile() async {
   file = File(path);
 }
 
-Future uploadFile() async {
+Future uploadFile(context) async {
   if (file == null) return;
 
   final fileName = basename(file!.path);
@@ -55,7 +57,7 @@ Future uploadFile() async {
   final snapshot = await task!.whenComplete(() {});
   final urlDownload = await snapshot.ref.getDownloadURL();
 
-  FirebaseFirestore.instance
+  await FirebaseFirestore.instance
       .collection("Users")
       .doc(userUID)
       .collection("Documents")
@@ -65,4 +67,15 @@ Future uploadFile() async {
     'URL': urlDownload,
     'createdAt': Timestamp.now(),
   });
+
+  return AwesomeDialog(
+    context: context,
+    animType: AnimType.LEFTSLIDE,
+    headerAnimationLoop: false,
+    dialogType: DialogType.SUCCES,
+    title: 'Succes',
+    desc: 'File Upload Successfully!',
+    btnOkIcon: Icons.check_circle,
+    btnOkOnPress: () {},
+  ).show();
 }

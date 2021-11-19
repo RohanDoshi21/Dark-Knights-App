@@ -54,50 +54,42 @@ class _NavDrawerState extends State<NavDrawer> {
                     fontFamily: 'Lato', fontSize: 37, color: Colors.deepPurple),
               ),
             ),
-            const Divider(
-              color: Colors.white,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.17,
-              child: ListTile(
-                leading: CircleAvatar(
-                  foregroundColor: Theme.of(context).primaryColor,
-                  backgroundColor: Colors.grey,
-                  backgroundImage: NetworkImage(user!.photoURL!),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      user!.displayName!,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                subtitle: user!.phoneNumber != null
-                    ? Container(
-                        padding: const EdgeInsets.only(top: 5.0),
-                        child: Text(
-                          user!.email! + " " + user!.phoneNumber!,
-                          style: const TextStyle(
-                              color: Colors.grey, fontSize: 15.0),
-                        ),
-                      )
-                    : Container(
-                        padding: const EdgeInsets.only(top: 5.0),
-                        child: Flexible(
-                          child: Text(
-                            user!.email!,
-                            style: const TextStyle(
-                                color: Colors.grey, fontSize: 15.0),
+            const Divider(color: Color(0xff5ad0b5)),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
+                          child: CircleAvatar(
+                            foregroundColor: Theme.of(context).primaryColor,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: NetworkImage(user!.photoURL!),
                           ),
                         ),
+                        Text(
+                          user!.displayName!,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: Text(
+                        user!.email!,
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 15.0),
                       ),
-              ),
+                    ),
+                  ],
+                )
+              ],
             ),
-            const Divider(
-              color: Colors.white,
-            ),
+            const Divider(color: Color(0xff5ad0b5)),
             // ignore: sized_box_for_whitespace
             Container(
               height: MediaQuery.of(context).size.height * 0.16,
@@ -108,7 +100,7 @@ class _NavDrawerState extends State<NavDrawer> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Developers()));
+                              builder: (context) => Developers()));
                     },
                     child: Container(
                       margin: const EdgeInsets.all(5),
@@ -191,20 +183,10 @@ class _NavDrawerState extends State<NavDrawer> {
                 ],
               ),
             ),
-            const Divider(
-              color: Colors.white,
-            ),
+            const Divider(color: Color(0xff5ad0b5)),
           ],
         ),
       ),
     );
   }
 }
-
-// class DrawerItem {
-//   final String name;
-//   final IconData icon;
-//   final Function widget;
-
-//   const DrawerItem(this.name, this.icon, this.widget);
-// }

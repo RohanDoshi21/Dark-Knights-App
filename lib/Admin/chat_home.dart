@@ -15,7 +15,7 @@ class _ChatHomeState extends State<ChatHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff010413),
+      backgroundColor: const Color(0xff010413),
       appBar: AppBar(
         backgroundColor: const Color(0xff010413),
         title: const Text(

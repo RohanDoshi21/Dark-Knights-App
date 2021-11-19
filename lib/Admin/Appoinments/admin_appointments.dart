@@ -1,7 +1,6 @@
 import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:darkknightspict/Admin/Chat/clientuid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,11 +18,11 @@ class _ClientStatusState extends State<ClientStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff010413),
+      backgroundColor: const Color(0xff010413),
       appBar: AppBar(
         backgroundColor: const Color(0xff010413),
         title: const Text(
-          'Appoinments',
+          'Appointments',
           style: TextStyle(
               color: Color(0xff5ad0b5),
               fontWeight: FontWeight.bold,

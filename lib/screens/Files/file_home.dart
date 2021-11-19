@@ -29,7 +29,7 @@ class _FileHomeState extends State<FileHome> {
         return FloatingActionButton.extended(
           onPressed: () async {
             await selectFile();
-            await uploadFile();
+            await uploadFile(context);
           },
           label: const Text(
             'Upload',

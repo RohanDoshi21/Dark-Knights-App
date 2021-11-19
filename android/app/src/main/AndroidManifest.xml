@@ -1,7 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.darkkinghts.app.darkknightspict">
+   <queries>
+    <!-- If your app opens https URLs -->
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <data android:scheme="https" />
+    </intent>
+    <!-- If your app emails -->
+    <intent>
+      <action android:name="android.intent.action.SEND" />
+      <data android:mimeType="*/*" />
+    </intent>
+  </queries>
    <application
-        android:label="darkknightspict"
+        android:label="Cloud Accounting"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

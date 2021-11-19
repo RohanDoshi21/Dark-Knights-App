@@ -104,7 +104,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                           borderRadius: BorderRadius.all(Radius.circular(25)),
                         ),
                         width: MediaQuery.of(context).size.width * 0.82,
-                        height: MediaQuery.of(context).size.height * 0.55,
+                        height: MediaQuery.of(context).size.height * 0.58,
                         child: Column(
                           children: [
                             SizedBox(

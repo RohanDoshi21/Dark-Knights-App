@@ -53,8 +53,9 @@ class _AdminUserFilesState extends State<AdminUserFiles> {
     //final deviceWidth = MediaQuery.of(context).size.width;
 
     const List<Tab> tabs = <Tab>[
-      Tab(text: 'CA issued Documents'),
-      Tab(text: 'User Documents'),
+      Tab(child: Text('CA issued Documents', style: TextStyle(fontFamily: 'Lato',),
+   ),),
+      Tab(child: Text('User Documents', style: TextStyle(fontFamily: 'Lato',),))
     ];
 
     // const List<String> _myDocs = [

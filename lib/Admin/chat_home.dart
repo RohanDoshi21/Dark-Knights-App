@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:darkknightspict/Admin/Chat/chat_screen.dart';
 import 'package:darkknightspict/Admin/Chat/clientuid.dart';
+import 'package:darkknightspict/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,6 +27,19 @@ class _ChatHomeState extends State<ChatHome> {
               fontSize: 25,
               fontFamily: 'Lato'),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  (Route<dynamic> route) => false);
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: Color(0xff5ad0b5),
+            ),
+          )
+        ],
       ),
       body: Center(
         child: StreamBuilder(

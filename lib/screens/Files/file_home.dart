@@ -52,8 +52,9 @@ class _FileHomeState extends State<FileHome> {
     //final deviceWidth = MediaQuery.of(context).size.width;
 
     const List<Tab> tabs = <Tab>[
-      Tab(text: 'My Documents'),
-      Tab(text: 'CA issued Documents'),
+      Tab(child: Text('My Documents', style: TextStyle(fontFamily: 'Lato',),)),
+      Tab(child: Text('CA issued Documents', style: TextStyle(fontFamily: 'Lato',),
+   ),),
     ];
 
     // const List<String> _myDocs = [

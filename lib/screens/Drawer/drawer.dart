@@ -1,6 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:darkknightspict/developers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../login.dart';
 // ignore: prefer_const_constructors
 
 class NavDrawer extends StatefulWidget {
@@ -12,11 +15,12 @@ class NavDrawer extends StatefulWidget {
 
 class _NavDrawerState extends State<NavDrawer> {
   //-----------------------------------------------------------------------
-  final List<DrawerItem> drawer = const [
-    DrawerItem('Developers', Icons.laptop_chromebook_outlined, Developers()),
-    DrawerItem('Logout', Icons.logout_rounded, Developers()),
-  ];
+  // final List<DrawerItem> drawer = const [
+  //   DrawerItem('Developers', Icons.laptop_chromebook_outlined, Developers()),
+  //   DrawerItem('Logout', Icons.logout_rounded, signOut()),
+  // ];
   final user = FirebaseAuth.instance.currentUser;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   //-------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
@@ -96,37 +100,95 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             // ignore: sized_box_for_whitespace
             Container(
-              height: MediaQuery.of(context).size.height * 0.15,
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return InkWell(
+              height: MediaQuery.of(context).size.height * 0.16,
+              child: Column(
+                children: [
+                  InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => drawer[index].widget));
+                              builder: (context) => const Developers()));
                     },
                     child: Container(
                       margin: const EdgeInsets.all(5),
                       child: Row(
-                        children: [
+                        children: const [
                           Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: EdgeInsets.all(10.0),
                             child: Icon(
-                              drawer[index].icon,
+                              Icons.laptop_chromebook_outlined,
                               size: 30,
                               color: Colors.white,
                             ),
                           ),
-                          Text(drawer[index].name,
-                              style: const TextStyle(
-                                  fontSize: 18, fontFamily: 'Lato'))
+                          Text('Developers',
+                              style:
+                                  TextStyle(fontSize: 18, fontFamily: 'Lato'))
                         ],
                       ),
                     ),
-                  );
-                },
-                itemCount: drawer.length,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.INFO,
+                        animType: AnimType.BOTTOMSLIDE,
+                        headerAnimationLoop: false,
+                        title: 'Signout?',
+                        desc: 'Do you really want to signout?',
+                        // ignore: deprecated_member_use
+                        // btnOk: FlatButton(
+                        //   child: const Text('Yes'),
+                        //   onPressed: () async {
+
+                        //     // Navigator.of(context).pop();
+                        //   },
+                        // ),
+                        // ignore: deprecated_member_use
+                        // btnCancel: FlatButton(
+                        //   child: const Text('Cancel'),
+                        //   color: Colors.red,
+                        //   onPressed: () {
+                        //     Navigator.of(context).pop();
+                        //   },
+                        // ),
+                        btnOkOnPress: () async {
+                          await _auth.signOut();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const LoginScreen()),
+                              (route) => false);
+                        },
+                        btnCancelOnPress: () {
+                          // Navigator.of(context).pop();
+                        },
+                        dismissOnTouchOutside: false,
+                      ).show();
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(5),
+                      child: Row(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.logout_rounded,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text('Logout',
+                              style:
+                                  TextStyle(fontSize: 18, fontFamily: 'Lato'))
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             const Divider(
@@ -139,10 +201,10 @@ class _NavDrawerState extends State<NavDrawer> {
   }
 }
 
-class DrawerItem {
-  final String name;
-  final IconData icon;
-  final Widget widget;
+// class DrawerItem {
+//   final String name;
+//   final IconData icon;
+//   final Function widget;
 
-  const DrawerItem(this.name, this.icon, this.widget);
-}
+//   const DrawerItem(this.name, this.icon, this.widget);
+// }

@@ -1,18 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:darkknightspict/Admin/Chat/chat_screen.dart';
 import 'package:darkknightspict/Admin/Chat/clientuid.dart';
-import 'package:darkknightspict/screens/login.dart';
+import 'package:darkknightspict/Admin/Files/file_home.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class ChatHome extends StatefulWidget {
-  const ChatHome({Key? key}) : super(key: key);
+class FileHomeAdmin extends StatefulWidget {
+  const FileHomeAdmin({Key? key}) : super(key: key);
 
   @override
-  _ChatHomeState createState() => _ChatHomeState();
+  _FileHomeAdminState createState() => _FileHomeAdminState();
 }
 
-class _ChatHomeState extends State<ChatHome> {
+class _FileHomeAdminState extends State<FileHomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,26 +18,13 @@ class _ChatHomeState extends State<ChatHome> {
       appBar: AppBar(
         backgroundColor: const Color(0xff010413),
         title: const Text(
-          'Chats',
+          'User Files',
           style: TextStyle(
               color: Color(0xff5ad0b5),
               fontWeight: FontWeight.bold,
               fontSize: 25,
               fontFamily: 'Lato'),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  (Route<dynamic> route) => false);
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: Color(0xff5ad0b5),
-            ),
-          )
-        ],
       ),
       body: Center(
         child: StreamBuilder(
@@ -63,12 +48,12 @@ class _ChatHomeState extends State<ChatHome> {
                     InkWell(
                       onTap: () {
                         setState(() {
-                          chatwithUID = _chatTile['uid'];
+                          documentOfUID = _chatTile['uid'];
                         });
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ChatScreenAdmin(),
+                            builder: (context) => const AdminUserFiles(),
                           ),
                         );
                       },
@@ -90,17 +75,17 @@ class _ChatHomeState extends State<ChatHome> {
                                 fontFamily: 'Lato',
                               ),
                             ),
-                            Text(
-                              DateFormat.jm()
-                                  .format(_chatTile['lastMessageTime'].toDate())
-                                  .toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.0,
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+                            // Text(
+                            //   DateFormat.jm()
+                            //       .format(_chatTile['lastMessageTime'].toDate())
+                            //       .toString(),
+                            //   style: const TextStyle(
+                            //     color: Colors.white,
+                            //     fontSize: 15.0,
+                            //     fontFamily: 'Lato',
+                            //     fontWeight: FontWeight.w700,
+                            //   ),
+                            // ),
                           ],
                         ),
                         subtitle: _chatTile['phoneNumber'] != null
@@ -129,6 +114,10 @@ class _ChatHomeState extends State<ChatHome> {
                                   ),
                                 ),
                               ),
+                        trailing: const Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          size: 38,
+                        ),
                       ),
                     ),
                     const Divider(

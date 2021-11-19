@@ -1,7 +1,7 @@
 import 'package:darkknightspict/Admin/Appoinments/admin_appointments.dart';
 import 'package:flutter/material.dart';
 
-import 'Files/file_home.dart';
+import 'Files/file_home_admin.dart';
 import 'chat_home.dart';
 
 class InitialPageAdmin extends StatefulWidget {
@@ -29,31 +29,28 @@ class _InitialPageAdminState extends State<InitialPageAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // // drawer: AppDrawer(),
-      // appBar: AppBar(
-      //   title: const Text("Cloud Accounting"),
-      // ),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.grey,
+        backgroundColor: const Color(0xff000000),
+        // unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Appoinments',
+            icon: Icon(Icons.event_available_outlined),
+            label: 'Appointments',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined),
+            icon: Icon(Icons.messenger_outline_rounded),
             label: 'Chats',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.file_copy),
+            icon: Icon(Icons.file_copy_outlined),
             label: 'Files',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        // selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );

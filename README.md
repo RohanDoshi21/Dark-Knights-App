@@ -1,7 +1,7 @@
 # Cloud Accounting
 <I>An efficient and easy CA-Client interaction flutter project</I>
 
-<B>This is an application for a CA to interact with its clients. Clients can book appointments, share their documents and conversate with them through chat using this android appllcation.</b>
+<B>This is an application for a CA to interact with its clients. Clients can book appointments, share their documents and conversate with them through chat using this android application.</b>
 <br>
 <br>
 

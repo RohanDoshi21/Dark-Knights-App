@@ -24,6 +24,7 @@ dependencies:
   url_launcher: ^6.0.13
   awesome_dialog: ^2.1.1
   mailto: ^2.0.0
+  animated_text_kit: ^4.2.1
 
 dev_dependencies:
   flutter_test:

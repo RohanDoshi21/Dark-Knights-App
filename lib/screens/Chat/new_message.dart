@@ -42,7 +42,7 @@ class _NewMessageState extends State<NewMessage> {
       padding: const EdgeInsets.all(8),
       child: Row(
         children: [
-          //Textfield takes as much space as available therfore wrap it into expanded widget
+          //Textfield takes as much space as available therefore wrap it into expanded widget
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -60,6 +60,9 @@ class _NewMessageState extends State<NewMessage> {
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   hintText: 'Send a message',
+                  hintStyle: TextStyle(
+                    color:Colors.blueGrey,
+                  )
                 ),
                 onChanged: (val) {
                   setState(() {

@@ -60,6 +60,9 @@ class _NewMessageAdminState extends State<NewMessageAdmin> {
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   hintText: 'Send a message',
+                    hintStyle: TextStyle(
+                      color:Colors.blueGrey,
+                    ),
                 ),
                 onChanged: (val) {
                   setState(() {

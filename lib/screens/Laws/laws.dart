@@ -25,6 +25,7 @@ class LawsAndActs extends StatelessWidget {
           style: TextStyle(
               color: Color(0xff5ad0b5),
               fontWeight: FontWeight.bold,
+              fontSize: 25,
               fontFamily: 'Lato'),
         ),
       ),

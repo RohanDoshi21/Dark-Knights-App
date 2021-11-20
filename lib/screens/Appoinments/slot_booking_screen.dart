@@ -215,7 +215,7 @@ class _AppointmentsHomeState extends State<AppointmentsHome> {
                             ),
                             const Text(
                               // 'Note:This timing would have to be changed if the CA isn\'t  available in this slot.',
-                              'This is not a confirmed appointment.It may vary as per the CA\'s availability',
+                              'This is not a confirmed appointment. It may vary as per the CA\'s availability',
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontFamily: 'Lato',

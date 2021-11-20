@@ -17,15 +17,13 @@ class _FileHomeAdminState extends State<FileHomeAdmin> {
       backgroundColor: const Color(0xff010413),
       appBar: AppBar(
         backgroundColor: const Color(0xff010413),
-        title: const Flexible(
-          child: Text(
-            'Client Documents',
-            style: TextStyle(
-                color: Color(0xff5ad0b5),
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                fontFamily: 'Lato'),
-          ),
+        title: const Text(
+          'Client Documents',
+          style: TextStyle(
+              color: Color(0xff5ad0b5),
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+              fontFamily: 'Lato'),
         ),
       ),
       body: Center(

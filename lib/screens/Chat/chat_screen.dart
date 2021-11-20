@@ -7,19 +7,17 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(color: Colors.white),
-        child: Scaffold(
-          backgroundColor: const Color(0xff010413),
-          body: Column(
-            children: const [
-              Expanded(
-                child: Messages(),
-              ),
-              NewMessage(),
-            ],
-          ),
+    return Container(
+      decoration: const BoxDecoration(color: Colors.white),
+      child: Scaffold(
+        backgroundColor: const Color(0xff010413),
+        body: Column(
+          children: const [
+            Expanded(
+              child: Messages(),
+            ),
+            NewMessage(),
+          ],
         ),
       ),
     );

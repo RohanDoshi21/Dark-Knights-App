@@ -17,13 +17,15 @@ class _FileHomeAdminState extends State<FileHomeAdmin> {
       backgroundColor: const Color(0xff010413),
       appBar: AppBar(
         backgroundColor: const Color(0xff010413),
-        title: const Text(
-          'User Files',
-          style: TextStyle(
-              color: Color(0xff5ad0b5),
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              fontFamily: 'Lato'),
+        title: const Flexible(
+          child: Text(
+            'Client Documents',
+            style: TextStyle(
+                color: Color(0xff5ad0b5),
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                fontFamily: 'Lato'),
+          ),
         ),
       ),
       body: Center(
@@ -53,7 +55,7 @@ class _FileHomeAdminState extends State<FileHomeAdmin> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AdminUserFiles(),
+                            builder: (context) => AdminUserFiles(username: _chatTile['displayName'],),
                           ),
                         );
                       },

@@ -14,7 +14,7 @@ class _NewMessageAdminState extends State<NewMessageAdmin> {
   var _enteredMesaage = "";
 
   void _sendMessage() async {
-    FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unfocus();
 
     FirebaseFirestore.instance
         .collection('Users')
@@ -69,6 +69,7 @@ class _NewMessageAdminState extends State<NewMessageAdmin> {
                     _enteredMesaage = val;
                   });
                 },
+                onEditingComplete: (){},
               ),
             ),
           ),

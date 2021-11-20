@@ -14,7 +14,7 @@ class _NewMessageState extends State<NewMessage> {
   var _enteredMesaage = "";
 
   void _sendMessage() async {
-    FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser!;
     FirebaseFirestore.instance
         .collection('Users')
@@ -64,6 +64,7 @@ class _NewMessageState extends State<NewMessage> {
                     color:Colors.blueGrey,
                   )
                 ),
+                onEditingComplete: () {},
                 onChanged: (val) {
                   setState(() {
                     _enteredMesaage = val;

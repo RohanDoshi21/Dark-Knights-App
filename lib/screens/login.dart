@@ -1,4 +1,5 @@
 // import 'package:darkknightspict/Admin/chat_home.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:darkknightspict/Admin/initial_admin.dart';
 import 'package:darkknightspict/bottombar.dart';
 // import 'package:darkknightspict/initial_page.dart';
@@ -48,18 +49,33 @@ class LoginScreen extends StatelessWidget {
                               child: Image.asset("assets/images/login2.jpg"),
                             ),
                           ),
-                          const Text(
-                            "Cloud Accounting",
-                            style: TextStyle(
-                                fontSize: 30,
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff010413)),
+                          AnimatedTextKit(
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                "Cloud Accounting",
+                                speed: const Duration(milliseconds: 150),
+                                textStyle: const TextStyle(
+                                    fontSize: 30,
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff010413)),
+                              )
+                            ],
+                            isRepeatingAnimation: true,
+                            repeatForever: true,
                           ),
+                          // const Text(
+                          //   "Cloud Accounting",
+                          //   style: TextStyle(
+                          //       fontSize: 30,
+                          //       fontFamily: 'Lato',
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Color(0xff010413)),
+                          // ),
                           const Padding(
                             padding: EdgeInsets.all(18.0),
                             child: Text(
-                              "\"- An efficient and easy CA-Client interaction android application\"",
+                              "\"An efficient and easy CA-Client interaction android application\"",
                               style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Lato',

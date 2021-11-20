@@ -29,8 +29,20 @@ class _ClientStatusState extends State<ClientStatus> {
   @override
   Widget build(BuildContext context) {
     const List<Tab> tabs = <Tab>[
-      Tab(text: 'Requests'),
-      Tab(text: 'Calender'),
+       Tab(
+          child: Text(
+        'Calendar',
+        style: TextStyle(
+          fontFamily: 'Lato',
+        ),
+      )),
+      Tab(
+          child: Text(
+        'Pending Requests',
+        style: TextStyle(
+          fontFamily: 'Lato',
+        ),
+      ))
     ];
     return DefaultTabController(
       length: tabs.length,
@@ -56,6 +68,159 @@ class _ClientStatusState extends State<ClientStatus> {
             ),
             body: TabBarView(
               children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.025,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      child: Calendar(
+                        onDateSelected: (now) {
+                          setState(() {
+                            selectedDate = now;
+                          });
+                          // print(selectedDate);
+                        },
+                        startOnMonday: true,
+                        events: _events,
+                        selectedColor: const Color(0xff5ad0b5),
+                        todayColor: Colors.blue,
+                        eventColor: Colors.white,
+                        isExpanded: true,
+                        expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+                        dayOfWeekStyle: const TextStyle(
+                            // color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 11,
+                            fontFamily: 'Lato'),
+                      ),
+                    ),
+                    // ignore: avoid_unnecessary_containers
+                    Container(
+                      child: Expanded(
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('Appointments')
+                              .orderBy('dateTime', descending: true)
+                              .snapshots(),
+                          builder: (ctx, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            final details = snapshot.data!.docs;
+                            final height = MediaQuery.of(context).size.height;
+                            final width = MediaQuery.of(context).size.width;
+                            return ListView.separated(
+                              padding: const EdgeInsets.all(15),
+                              itemCount: details.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  child: details[index]['status'] ==
+                                              'Accepted' &&
+                                          (isSameDay(
+                                              selectedDate,
+                                              details[index]['dateTime']
+                                                  .toDate()))
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff403ffc)
+                                                .withOpacity(0.5),
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                          //width: MediaQuery.of(context).size.width*0.82,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.12,
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: width * 0.05,
+                                              ),
+                                              CircleAvatar(
+                                                radius: width * 0.076,
+                                                backgroundImage: NetworkImage(
+                                                    details[index]['photoURL']),
+                                                backgroundColor: Colors
+                                                    .blue, //temporarily added
+                                              ),
+                                              SizedBox(
+                                                width: width * 0.090,
+                                              ),
+                                              Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: height * 0.015,
+                                                  ),
+                                                  Flexible(
+                                                    child: Text(
+                                                      details[index]
+                                                          ['displayName'],
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize:
+                                                            height * 0.028,
+                                                        fontFamily: 'Lato',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.015,
+                                                  ),
+                                                  Flexible(
+                                                    child: Text(
+                                                      details[index]['email'],
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            height * 0.015,
+                                                        fontFamily: 'Lato',
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.007,
+                                                  ),
+                                                  Text(
+                                                    'Time: ' +
+                                                        DateFormat.jm()
+                                                            .format(details[
+                                                                        index]
+                                                                    ['dateTime']
+                                                                .toDate())
+                                                            .toString(),
+                                                    style: TextStyle(
+                                                      fontSize: height * 0.020,
+                                                      fontFamily: 'Lato',
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : null,
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const Divider(),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('Appointments')
@@ -256,160 +421,6 @@ class _ClientStatusState extends State<ClientStatus> {
                           const Divider(),
                     );
                   },
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                       height: MediaQuery.of(context).size.height * 0.025,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.35,
-                      child: Calendar(
-                        onDateSelected: (now) {
-                          setState(() {
-                            selectedDate = now;
-                          });
-                          // print(selectedDate);
-                        },
-                        
-                        startOnMonday: true,
-                        events: _events,
-                        selectedColor: const Color(0xff5ad0b5),
-                        todayColor: Colors.blue,
-                        eventColor: Colors.white,
-                        isExpanded: true,
-                        expandableDateFormat: 'EEEE, dd. MMMM yyyy',
-                        dayOfWeekStyle: const TextStyle(
-                            // color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 11,
-                            fontFamily: 'Lato'),
-                      ),
-                    ),
-                    // ignore: avoid_unnecessary_containers
-                    Container(
-                      child: Expanded(
-                        child: StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection('Appointments')
-                              .orderBy('dateTime', descending: true)
-                              .snapshots(),
-                          builder: (ctx, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                            final details = snapshot.data!.docs;
-                            final height = MediaQuery.of(context).size.height;
-                            final width = MediaQuery.of(context).size.width;
-                            return ListView.separated(
-                              padding: const EdgeInsets.all(15),
-                              itemCount: details.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  child: details[index]['status'] ==
-                                              'Accepted' &&
-                                          (isSameDay(
-                                              selectedDate,
-                                              details[index]['dateTime']
-                                                  .toDate()))
-                                      ? Container(
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff403ffc)
-                                                .withOpacity(0.5),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0),
-                                          ),
-                                          //width: MediaQuery.of(context).size.width*0.82,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.12,
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: width * 0.05,
-                                              ),
-                                              CircleAvatar(
-                                                radius: width * 0.076,
-                                                backgroundImage: NetworkImage(
-                                                    details[index]['photoURL']),
-                                                backgroundColor: Colors
-                                                    .blue, //temporarily added
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.090,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: height * 0.015,
-                                                  ),
-                                                  Flexible(
-                                                    child: Text(
-                                                      details[index]
-                                                          ['displayName'],
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize:
-                                                            height * 0.028,
-                                                        fontFamily: 'Lato',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: height * 0.015,
-                                                  ),
-                                                  Flexible(
-                                                    child: Text(
-                                                      details[index]['email'],
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            height * 0.015,
-                                                        fontFamily: 'Lato',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: height * 0.007,
-                                                  ),
-                                                  Text(
-                                                    'Time: ' +
-                                                        DateFormat.jm()
-                                                            .format(details[
-                                                                        index]
-                                                                    ['dateTime']
-                                                                .toDate())
-                                                            .toString(),
-                                                    style: TextStyle(
-                                                      fontSize: height * 0.020,
-                                                      fontFamily: 'Lato',
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      : null,
-                                );
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) =>
-                                      const Divider(),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

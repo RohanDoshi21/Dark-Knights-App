@@ -13,9 +13,11 @@ _launchURL(url) async {
   }
 }
 
+// ignore: must_be_immutable
 class AdminUserFiles extends StatefulWidget {
-  const AdminUserFiles({Key? key}) : super(key: key);
-
+//  AdminUserFiles({Key? key, required this.username}) : super(key: key, username: username);
+  AdminUserFiles({Key? key, required this.username}) : super(key: key);
+  String username;
   @override
   State<AdminUserFiles> createState() => _AdminUserFilesState();
 }
@@ -53,9 +55,20 @@ class _AdminUserFilesState extends State<AdminUserFiles> {
     //final deviceWidth = MediaQuery.of(context).size.width;
 
     const List<Tab> tabs = <Tab>[
-      Tab(child: Text('CA issued Documents', style: TextStyle(fontFamily: 'Lato',),
-   ),),
-      Tab(child: Text('User Documents', style: TextStyle(fontFamily: 'Lato',),))
+      Tab(
+          child: Text(
+        'CA issued Documents',
+        style: TextStyle(
+          fontFamily: 'Lato',
+        ),
+      )),
+      Tab(
+          child: Text(
+        'User Documents',
+        style: TextStyle(
+          fontFamily: 'Lato',
+        ),
+      ))
     ];
 
     // const List<String> _myDocs = [
@@ -89,9 +102,9 @@ class _AdminUserFilesState extends State<AdminUserFiles> {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: const Color(0xff010413),
-            title: const Text(
-              'Documents',
-              style: TextStyle(
+            title: Text(
+              widget.username + '\'s Documents',
+              style: const TextStyle(
                   color: Color(0xff5ad0b5),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Lato'),

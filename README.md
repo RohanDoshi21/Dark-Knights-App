@@ -30,3 +30,7 @@
 <img src= "https://user-images.githubusercontent.com/63660267/142726835-7392627a-97d0-43f0-90d0-15eef4249eec.png" width=275 height=575></img>&nbsp; &nbsp; &nbsp; &nbsp;
 <img src= "https://user-images.githubusercontent.com/63660267/142726837-6704137b-c6b8-4f07-9e13-489f67b7627f.png" width=275 height=575></img>
 </p>
+
+Links:
+Android-Arm64: (18.3 mb) : https://drive.google.com/file/d/173yMlPI_J6j2DyjcpL76udntnHPatike/view?usp=sharing
+Android (47.2 mb) : https://drive.google.com/file/d/1nYxkFzHJN6nPIwHAsNmxmHOtLQ6rI5_X/view?usp=sharing

@@ -33,6 +33,6 @@
 
 Links:
 
-Android-Arm64: (18.3 mb) : https://drive.google.com/file/d/173yMlPI_J6j2DyjcpL76udntnHPatike/view?usp=sharing
+Android-Arm64: (18.3 mb) : https://drive.google.com/file/d/1OVSUOjtgLm9ccAGtz2xi1bUZhmmKTg5c/view?usp=sharing
 
-Android (47.2 mb) : https://drive.google.com/file/d/1nYxkFzHJN6nPIwHAsNmxmHOtLQ6rI5_X/view?usp=sharing
+Android (47.2 mb) : https://drive.google.com/file/d/1cOy3IRaSLGlZTsG1XomcaH-WoGAT89s7/view?usp=sharing

@@ -1,4 +1,5 @@
 import 'package:darkknightspict/Admin/Appoinments/admin_appointments.dart';
+import 'package:darkknightspict/screens/Laws/laws.dart';
 import 'package:flutter/material.dart';
 
 import 'Files/file_home_admin.dart';
@@ -18,6 +19,7 @@ class _InitialPageAdminState extends State<InitialPageAdmin> {
     ClientStatus(),
     ChatHome(),
     FileHomeAdmin(),
+    LawsAndActs(),
   ];
 
   void _onItemTapped(int index) {
@@ -32,6 +34,7 @@ class _InitialPageAdminState extends State<InitialPageAdmin> {
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color(0xff000000),
+        type: BottomNavigationBarType.fixed,
         // unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
         showUnselectedLabels: true,
@@ -47,6 +50,10 @@ class _InitialPageAdminState extends State<InitialPageAdmin> {
           BottomNavigationBarItem(
             icon: Icon(Icons.file_copy_outlined),
             label: 'Files',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_outlined),
+            label: 'Laws/Acts',
           ),
         ],
         currentIndex: _selectedIndex,

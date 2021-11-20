@@ -14,7 +14,7 @@ class _NewMessageState extends State<NewMessage> {
   var _enteredMesaage = "";
 
   void _sendMessage() async {
-    FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser!;
     FirebaseFirestore.instance
         .collection('Users')
@@ -61,6 +61,7 @@ class _NewMessageState extends State<NewMessage> {
                   focusedBorder: InputBorder.none,
                   hintText: 'Send a message',
                 ),
+                onEditingComplete: () {},
                 onChanged: (val) {
                   setState(() {
                     _enteredMesaage = val;

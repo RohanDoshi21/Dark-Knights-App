@@ -3,6 +3,7 @@ import 'package:darkknightspict/screens/Appoinments/appointment_status_screen.da
 // import 'package:darkknightspict/screens/Appoinments/slot_booking_screen.dart';
 import 'package:darkknightspict/screens/Chat/chat_screen.dart';
 import 'package:darkknightspict/screens/Files/file_home.dart';
+import 'package:darkknightspict/screens/Laws/Laws.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
@@ -21,7 +22,8 @@ class _BottomBarState extends State<BottomBar> {
     // AppointmentsHome(),
     const AppointmentStatus(),
     const ChatScreen(),
-    const FileHome()
+    const FileHome(),
+    const LawsAndActs(),
   ];
   @override
   void initState() {
@@ -39,6 +41,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: pageIndex,
         onTap: gotoPage,
         backgroundColor: const Color(0xff000000),
@@ -55,6 +58,10 @@ class _BottomBarState extends State<BottomBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.file_copy_outlined),
             label: 'Files',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_outlined),
+            label: 'Laws/Acts',
           ),
         ],
       ),
